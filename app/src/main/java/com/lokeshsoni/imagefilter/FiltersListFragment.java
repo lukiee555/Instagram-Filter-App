@@ -4,6 +4,7 @@ package com.lokeshsoni.imagefilter;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,13 +30,21 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FiltersListFragment extends Fragment implements FilterListFragmentListner{
+public class FiltersListFragment extends BottomSheetDialogFragment implements FilterListFragmentListner{
 
     RecyclerView recyclerView;
     ThumbnailAdapter adapter;
     List<ThumbnailItem> thumbnailItems;
 
     FilterListFragmentListner listner;
+     static  FiltersListFragment instance;
+
+    public static FiltersListFragment getInstance(){
+
+        if(instance == null)
+            instance = new FiltersListFragment();
+        return instance;
+    }
 
     public void setListner(FilterListFragmentListner listner) {
         this.listner = listner;

@@ -2,6 +2,7 @@ package com.lokeshsoni.imagefilter;
 
 
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +12,18 @@ import android.widget.SeekBar;
 import com.lokeshsoni.imagefilter.Interface.EditImageFragmentListner;
 
 
-public class EditImageFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
+public class EditImageFragment extends BottomSheetDialogFragment implements SeekBar.OnSeekBarChangeListener {
 
     private EditImageFragmentListner listner;
     SeekBar seekbar_brightness, seekbar_constrant,seekbar_saturation;
 
+    static EditImageFragment instance;
+
+    public static EditImageFragment getInstance() {
+        if(instance == null)
+            instance = new EditImageFragment();
+        return instance;
+    }
 
     public void setListner(EditImageFragmentListner listner) {
         this.listner = listner;
